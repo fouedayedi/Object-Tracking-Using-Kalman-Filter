@@ -1,21 +1,48 @@
-# 2-D Kalman Filter for tracking a moving object.
+# 2-D Kalman Filter for Object Tracking
 
-Accompanying code for tutorial "Object Tracking: 2-D Object Tracking using Kalman Filter in Python"
-Tutorial's link:
-https://machinelearningspace.com/2d-object-tracking-using-kalman-filter/
+This project applies a 2-D Kalman Filter for tracking a moving object. It includes the experimentation with different parameters and the comparison of Root Mean Square Error (RMSE) for each parameter set. The results of these comparisons can be found in the `plots` folder.
 
-This code has been tested on Windows 10/11 using Anaconda. (Python 3.9 and OpenCV 4.7)
+## Getting Started
 
-Requirements:
-- Python 3.9
-- opencv 4.7 
+To set up your environment to run this project, follow these steps:
 
-Create your conda environment:
-- conda create -n your_ENV_NAME python=3.9
+### Create a Conda Environment
+conda create -n your_ENV_NAME python=3.9
 
-Install these two libraries:
-- pip install matplotlib
-- pip install opencv-python        (This will install OpenCV 4.7.0.68 at the moment I was updating this repository on January 20, 2023)
 
-Cheers
+### Install Requirements
+pip install -r requirements.txt
+
+
+## Project Structure
+
+- `objTracking.py`: Compiles the tracking using different parameters and plots the results.
+- `mydetector.py`: Tracks a red object. Modify the pixel range within the script to track objects of different colors.
+- `utils/`: Contains utility functions used across the project.
+- `output/`: Contains the output positions saved during object tracking.
+- `plots/`: Contains plots generated from parameter testing and RMSE comparison.
+
+## Parameter Sets
+
+The project tests various parameter sets for the Kalman Filter:
+
+```
+python
+parameter_sets = [
+    {'std_acc': std_acc, 'x_std_meas': std_meas, 'y_std_meas': std_meas}
+    for std_acc in np.linspace(0.1, 0.5, num=5)
+    for std_meas in np.linspace(0.0001, 0.001, num=10)
+]
+```
+
+Adjust these in objTracking.py as needed for your specific use case.
+Acknowledgements
+
+    This project was inspired by the GitHub repository "2-D Kalman Filter for tracking a moving object."
+    Additional insights were gained from Machine Learning Space on 2D object tracking using Kalman Filters.
+
+Contribution
+
+Feel free to fork this project, submit pull requests, or suggest improvements.
+
 
